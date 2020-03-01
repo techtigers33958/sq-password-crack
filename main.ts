@@ -7,17 +7,8 @@ input.onButtonPressed(Button.B, function () {
     reset()
 })
 radio.onReceivedNumber(function (receivedNumber) {
-    if (receivedNumber != Target_Number) {
+    if (receivedNumber != passcode) {
         radio.sendString("NO")
-        basic.showIcon(IconNames.SmallSquare)
-        basic.pause(100)
-        basic.showLeds(`
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            . . . . .
-            `)
     } else {
         radio.sendString("YES")
         basic.showIcon(IconNames.Yes)
@@ -26,12 +17,12 @@ radio.onReceivedNumber(function (receivedNumber) {
     }
 })
 function reset () {
-    Target_Number = Math.randomRange(1, 999)
+    passcode = Math.randomRange(1, 999)
     basic.showIcon(IconNames.Diamond)
 }
 input.onButtonPressed(Button.A, function () {
     release_ball()
 })
-let Target_Number = 0
+let passcode = 0
 radio.setGroup(40)
 reset()
